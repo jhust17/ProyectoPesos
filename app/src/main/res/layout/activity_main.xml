@@ -8,89 +8,98 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin">
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:id="@+id/linear1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:ignore="MissingConstraints">
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp">
 
-            <LinearLayout
-                android:id="@+id/linear1"
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="16dp">
+                android:layout_height="wrap_content"
+                android:paddingTop="25dp"
+                android:paddingBottom="20dp"
+                android:text="Bienvenido"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="30sp" />
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="25dp"
-                    android:paddingBottom="20dp"
-                    android:text="Bienvenido"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textSize="30sp" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                app:srcCompat="@mipmap/ic_princ" />
 
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    app:srcCompat="@mipmap/ic_princ" />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"
+                android:ems="10"
+                android:hint="Email/Correo"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp" />
 
-                <EditText
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="20dp"
-                    android:ems="10"
-                    android:hint="Email/Correo"
-                    android:inputType="textEmailAddress"
-                    android:minHeight="48dp" />
+            <EditText
+                android:id="@+id/pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:ems="10"
+                android:hint="Contrasenia"
+                android:inputType="textPassword"
+                android:minHeight="48dp" />
 
-                <EditText
-                    android:id="@+id/pwd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="25dp"
-                    android:ems="10"
-                    android:hint="Contrasenia"
-                    android:inputType="textPassword"
-                    android:minHeight="48dp" />
+            <Button
+                android:id="@+id/btn_sig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:text="Siguiente" />
 
-                <Button
-                    android:id="@+id/btn_sig"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginBottom="25dp"
-                    android:text="Siguiente" />
+            <TextView
+                android:id="@+id/registro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:clickable="true"
+                android:contextClickable="false"
+                android:text="No tienes una cuenta\?"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/registro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:contextClickable="false"
-                    android:text="No tienes una cuenta\?"
-                    android:textAlignment="center"
-                    android:layout_marginBottom="50dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textSize="16sp" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="\@K_Manager"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="\@K_Manager"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="16sp" />
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="siguiente"
+                android:text="Button" />
 
-            </LinearLayout>
+        </LinearLayout>
 
-        </ScrollView>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,75 +21,147 @@
                 android:layout_height="match_parent">
 
                 <EditText
-                    android:id="@+id/usuario"
+                    android:id="@+id/pesoTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="388dp"
+                    android:ems="10"
+                    android:hint="Peso de usuario"
+                    android:inputType="numberDecimal"
+                    android:minHeight="48dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/nomTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="44dp"
                     android:ems="10"
                     android:hint="Nombre de usuario"
                     android:inputType="textPersonName"
                     android:minHeight="48dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintHorizontal_bias="0.502"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/avatar" />
+                    app:layout_constraintTop_toBottomOf="@+id/iconImageView" />
 
                 <EditText
-                    android:id="@+id/fecha_n"
+                    android:id="@+id/alturaTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="324dp"
                     android:ems="10"
-                    android:hint="Fecha de nacimiento"
-                    android:inputType="date"
+                    android:hint="Altura de usuario"
+                    android:inputType="numberDecimal"
                     android:minHeight="48dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/usuario" />
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/edadTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="260dp"
+                    android:ems="10"
+                    android:hint="Edad de usuario"
+                    android:inputType="number"
+                    android:minHeight="48dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/Iregresar"
+                    android:layout_width="54dp"
+                    android:layout_height="39dp"
+                    android:clickable="true"
+                    android:layout_marginTop="16dp"
+                    android:onClick="Rrecycler"
+                    android:src="@drawable/arrow_back_ios_black_24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.044"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iconImageView"
+                    android:layout_width="160dp"
+                    android:layout_height="115dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="#0D2CD8"
+                    android:paddingLeft="14dp"
+                    android:paddingRight="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.068"
+                    app:srcCompat="@drawable/person_black_24dp" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_width="241dp"
+                    android:layout_height="101dp"
+                    android:layout_marginTop="448dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.3"
+                    app:layout_constraintHorizontal_bias="0.595"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fecha_n">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <RadioButton
-                        android:id="@+id/radioButton"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/radioButtonH"
+                        android:layout_width="105dp"
                         android:layout_height="wrap_content"
-                        android:text="Hombre" />
+                        android:text="Hombre"
+                        android:textStyle="bold" />
 
                     <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="match_parent"
+                        android:id="@+id/radioButtonM"
+                        android:layout_width="105dp"
                         android:layout_height="wrap_content"
-                        android:text="Mujer" />
+                        android:text="Mujer"
+                        android:textStyle="bold"
+                        app:layout_constraintHorizontal_bias="0.469" />
+
                 </RadioGroup>
 
-                <ImageButton
-                    android:id="@+id/avatar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:contentDescription="@string/app_name"
+                <CheckBox
+                    android:id="@+id/checkFum"
+                    android:layout_width="153dp"
+                    android:layout_height="51dp"
+                    android:layout_marginBottom="108dp"
+                    android:text="Fuma"
+                    android:textAlignment="textStart"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:layout_constraintHorizontal_bias="0.391"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                <ImageView
+                    android:id="@+id/agregarbtn"
+                    android:layout_width="67dp"
+                    android:layout_height="52dp"
+                    android:layout_marginBottom="36dp"
+                    android:backgroundTint="#091D8E"
+                    android:onClick="Aregistro"
+                    android:clickable="true"
+                    android:src="@drawable/add_circle_black_24dp"
                     android:text="Agregar"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+                    app:layout_constraintStart_toStartOf="parent" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
