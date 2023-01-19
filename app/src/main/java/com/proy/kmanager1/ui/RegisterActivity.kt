@@ -1,9 +1,10 @@
-package com.proy.kmanager1
+package com.proy.kmanager1.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.proy.kmanager1.R
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
