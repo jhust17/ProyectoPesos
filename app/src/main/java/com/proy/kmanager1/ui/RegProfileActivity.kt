@@ -1,7 +1,8 @@
-package com.proy.kmanager1
+package com.proy.kmanager1.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.proy.kmanager1.R
 
 class RegProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
