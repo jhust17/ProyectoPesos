@@ -44,8 +44,8 @@ class RecyclerV : AppCompatActivity() {
             men = 2
         }
         if (men == 2) {
-            ListElementProvider.userelelist.add(0, data)
-            adapter.notifyItemInserted(0)
+            ListElementProvider.userelelist.add(data)
+            adapter.notifyDataSetChanged()
         }
         etFilter = findViewById(R.id.etFilter)
         etFilter.addTextChangedListener { userfilter ->
