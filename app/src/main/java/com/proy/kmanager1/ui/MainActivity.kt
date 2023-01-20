@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.proy.kmanager1.R
+import com.proy.kmanager1.RecyclerV
 import com.proy.kmanager1.io.ApiService
 import com.proy.kmanager1.io.response.LoginResponse
 import com.proy.kmanager1.model.Logg
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(i)
     }
     private fun gotoMenu() {
-        val i = Intent(this, ProfilesActivity::class.java)
+        val i = Intent(this, RecyclerV::class.java)
 
         startActivity(i)
         finish()

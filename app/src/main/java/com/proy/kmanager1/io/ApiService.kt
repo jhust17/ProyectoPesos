@@ -24,7 +24,7 @@ interface ApiService {
     fun postLogout(@Header(value = "Authorization") authHeader: String):
             Call<Void>
     companion object Factory{
-        private const val BASE_URL = "http://10.0.0.4:4000/api/auth/"
+        private const val BASE_URL = "http://127.0.0.1:4000/api/auth/"
         fun create(): ApiService{
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)

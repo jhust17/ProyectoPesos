@@ -9,7 +9,10 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.proy.kmanager1.io.ApiService
+import com.proy.kmanager1.ui.MainActivity
 import com.proy.kmanager1.util.PreferenceHelper
+import com.proy.kmanager1.util.PreferenceHelper.get
 import com.proy.kmanager1.util.PreferenceHelper.set
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,9 +29,16 @@ class RecyclerV : AppCompatActivity() {
     private lateinit var etFilter: EditText
     var men: Int = 0
     var id: Int =0
+    private val apiService: ApiService by lazy {
+        ApiService.create()
+    }
+    private val preferences by lazy {
+        PreferenceHelper.defaultPrefs(this)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_v)
+        val preferences = PreferenceHelper.defaultPrefs(this)
         val nom = intent.getStringExtra("nombre").toString()
         val eda = intent.getIntExtra("edad", 0)
         val alt = intent.getIntExtra("altura", 0)
@@ -123,20 +133,33 @@ class RecyclerV : AppCompatActivity() {
     }
 
     fun Logout(view: View) {
-        clearSessionPreference()
-        gotoLogin()
+        performLogout()
     }
-
-    private fun gotoLogin() {
+    private fun gotoLogin(){
         val i = Intent(this, MainActivity::class.java)
 
         startActivity(i)
         finish()
     }
 
-    private fun clearSessionPreference() {
-        val preference = PreferenceHelper.defaultPrefs(this)
-        preference["session"] = false
+    private fun performLogout(){
+        val body = preferences["body", ""]
+        val call = apiService.postLogout("Bearer $body")
+        call.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                clearSessionPreference()
+                gotoLogin()
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Toast.makeText(applicationContext, "Error en el servidor", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+    }
+    private fun clearSessionPreference(){
+        preferences["body"] = ""
     }
 }
 /*

@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.proy.kmanager1.R
+import com.proy.kmanager1.RegProfileActivity
 import com.proy.kmanager1.io.ApiService
 import com.proy.kmanager1.io.response.LoginResponse
 import com.proy.kmanager1.io.response.LogoutResponse
