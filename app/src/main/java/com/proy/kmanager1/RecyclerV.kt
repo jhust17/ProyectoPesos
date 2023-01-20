@@ -20,29 +20,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RecyclerV : AppCompatActivity() {
     private lateinit var adapter: ListElementAdapter
     private lateinit var etFilter: EditText
-    var men: Int = 0
     var id: Int =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_v)
-        val nom = intent.getStringExtra("nombre").toString()
-        val eda = intent.getIntExtra("edad", 0)
-        val alt = intent.getIntExtra("altura", 0)
-        val pes = intent.getIntExtra("peso", 0)
-        val gen = intent.getIntExtra("genero",0)
-        val fum = intent.getIntExtra("fuma",0)
         initRecyclerView()
-        val data = ListElement(id,nom, eda, alt, pes, gen, fum)
-        if (eda == 0) {
-            men = 1
-
-        } else {
-            men = 2
-        }
-        if (men == 2) {
-            ListElementProvider.userelelist.add(data)
-            adapter.notifyDataSetChanged()
-        }
         etFilter = findViewById(R.id.etFilter)
         etFilter.addTextChangedListener { userfilter ->
             val userlistFilter = ListElementProvider.userelelist.filter { listuser ->

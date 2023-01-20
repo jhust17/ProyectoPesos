@@ -90,13 +90,8 @@ class RegProfileActivity : AppCompatActivity() {
             fuma=0
         }
         val  user = listOf<ListElement>(ListElement(null,nombre,edad,altura,peso,genero,fuma))
+        userPost(user)
         val intent = Intent(this@RegProfileActivity, RecyclerV::class.java)
-        intent.putExtra("nombre", nombre)
-        intent.putExtra("edad", edad)
-        intent.putExtra("altura", altura)
-        intent.putExtra("peso", peso)
-        intent.putExtra("genero", genero)
-        intent.putExtra("fuma", fuma)
         startActivity(intent)
     }
 
@@ -107,19 +102,15 @@ class RegProfileActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-    private fun userPost() {
-        val call: Call<List<ListElement>> = getRetrofit().create(APIService::class.java).getUsers()
+    private fun userPost(userlist: List<ListElement>) {
+        val call: Call<List<ListElement>> = getRetrofit().create(APIService::class.java).postUsers(userlist)
         call.enqueue(object : Callback<List<ListElement>> {
             override fun onResponse(
                 call: Call<List<ListElement>>,
                 response: Response<List<ListElement>>
             ) {
                 if (response.isSuccessful){
-                    val user:List<ListElement>? = response.body()
-                    val users: List<ListElement> = user?: emptyList()
-                    ListElementProvider.userelelist.clear()
-                    ListElementProvider.userelelist.addAll(users)
-                    adapter.notifyDataSetChanged()
+                    showCorrect()
                 }
             }
 
@@ -129,6 +120,9 @@ class RegProfileActivity : AppCompatActivity() {
         })
 
     }
+    private fun showCorrect() {
+        Toast.makeText(this, "Se agrego datos", Toast.LENGTH_SHORT).show()
+    }
     private fun showError() {
         Toast.makeText(this, "Error no carga", Toast.LENGTH_SHORT).show()
     }
@@ -136,4 +130,5 @@ class RegProfileActivity : AppCompatActivity() {
     fun Rrecycler(view: View){
         super.onBackPressed()
     }
+
 }
