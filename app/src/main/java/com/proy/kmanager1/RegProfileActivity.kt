@@ -9,6 +9,11 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class RegProfileActivity : AppCompatActivity() {
@@ -84,9 +89,7 @@ class RegProfileActivity : AppCompatActivity() {
         }else{
             fuma=0
         }
-        /*val  user = ListElement(
-            nombre,edad,altura,peso,genero,fuma
-        )*/
+        val  user = listOf<ListElement>(ListElement(null,nombre,edad,altura,peso,genero,fuma))
         val intent = Intent(this@RegProfileActivity, RecyclerV::class.java)
         intent.putExtra("nombre", nombre)
         intent.putExtra("edad", edad)
@@ -95,6 +98,39 @@ class RegProfileActivity : AppCompatActivity() {
         intent.putExtra("genero", genero)
         intent.putExtra("fuma", fuma)
         startActivity(intent)
+    }
+
+    private fun getRetrofit(): Retrofit {
+        val Base_url ="https://private-47aaaa-jhust17.apiary-mock.com/"
+        return Retrofit.Builder()
+            .baseUrl(Base_url)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+    private fun userPost() {
+        val call: Call<List<ListElement>> = getRetrofit().create(APIService::class.java).getUsers()
+        call.enqueue(object : Callback<List<ListElement>> {
+            override fun onResponse(
+                call: Call<List<ListElement>>,
+                response: Response<List<ListElement>>
+            ) {
+                if (response.isSuccessful){
+                    val user:List<ListElement>? = response.body()
+                    val users: List<ListElement> = user?: emptyList()
+                    ListElementProvider.userelelist.clear()
+                    ListElementProvider.userelelist.addAll(users)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onFailure(call: Call<List<ListElement>>, t: Throwable) {
+                showError()
+            }
+        })
+
+    }
+    private fun showError() {
+        Toast.makeText(this, "Error no carga", Toast.LENGTH_SHORT).show()
     }
 
     fun Rrecycler(view: View){

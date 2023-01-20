@@ -11,15 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.proy.kmanager1.util.PreferenceHelper
 import com.proy.kmanager1.util.PreferenceHelper.set
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.sql.*
 
 class RecyclerV : AppCompatActivity() {
     private lateinit var adapter: ListElementAdapter
