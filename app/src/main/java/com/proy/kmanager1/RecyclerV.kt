@@ -14,20 +14,15 @@ import com.proy.kmanager1.ui.MainActivity
 import com.proy.kmanager1.util.PreferenceHelper
 import com.proy.kmanager1.util.PreferenceHelper.get
 import com.proy.kmanager1.util.PreferenceHelper.set
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.sql.*
 
 class RecyclerV : AppCompatActivity() {
     private lateinit var adapter: ListElementAdapter
     private lateinit var etFilter: EditText
-    var men: Int = 0
     var id: Int =0
     private val apiService: ApiService by lazy {
         ApiService.create()
@@ -38,25 +33,7 @@ class RecyclerV : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler_v)
-        val preferences = PreferenceHelper.defaultPrefs(this)
-        val nom = intent.getStringExtra("nombre").toString()
-        val eda = intent.getIntExtra("edad", 0)
-        val alt = intent.getIntExtra("altura", 0)
-        val pes = intent.getIntExtra("peso", 0)
-        val gen = intent.getIntExtra("genero",0)
-        val fum = intent.getIntExtra("fuma",0)
         initRecyclerView()
-        val data = ListElement(id,nom, eda, alt, pes, gen, fum)
-        if (eda == 0) {
-            men = 1
-
-        } else {
-            men = 2
-        }
-        if (men == 2) {
-            ListElementProvider.userelelist.add(0, data)
-            adapter.notifyItemInserted(0)
-        }
         etFilter = findViewById(R.id.etFilter)
         etFilter.addTextChangedListener { userfilter ->
             val userlistFilter = ListElementProvider.userelelist.filter { listuser ->

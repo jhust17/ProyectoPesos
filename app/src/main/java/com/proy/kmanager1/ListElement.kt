@@ -1,7 +1,7 @@
 package com.proy.kmanager1
 
 data class ListElement(
-    val id: Int,
+    val id: Int?,
     val name: String,
     val age: Int,
     val gender: Int,

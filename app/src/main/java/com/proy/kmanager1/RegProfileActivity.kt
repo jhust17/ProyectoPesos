@@ -9,6 +9,11 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class RegProfileActivity : AppCompatActivity() {
@@ -84,20 +89,46 @@ class RegProfileActivity : AppCompatActivity() {
         }else{
             fuma=0
         }
-        /*val  user = ListElement(
-            nombre,edad,altura,peso,genero,fuma
-        )*/
+        val  user = listOf<ListElement>(ListElement(null,nombre,edad,altura,peso,genero,fuma))
+        userPost(user)
         val intent = Intent(this@RegProfileActivity, RecyclerV::class.java)
-        intent.putExtra("nombre", nombre)
-        intent.putExtra("edad", edad)
-        intent.putExtra("altura", altura)
-        intent.putExtra("peso", peso)
-        intent.putExtra("genero", genero)
-        intent.putExtra("fuma", fuma)
         startActivity(intent)
+    }
+
+    private fun getRetrofit(): Retrofit {
+        val Base_url ="https://private-47aaaa-jhust17.apiary-mock.com/"
+        return Retrofit.Builder()
+            .baseUrl(Base_url)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+    private fun userPost(userlist: List<ListElement>) {
+        val call: Call<List<ListElement>> = getRetrofit().create(APIService::class.java).postUsers(userlist)
+        call.enqueue(object : Callback<List<ListElement>> {
+            override fun onResponse(
+                call: Call<List<ListElement>>,
+                response: Response<List<ListElement>>
+            ) {
+                if (response.isSuccessful){
+                    showCorrect()
+                }
+            }
+
+            override fun onFailure(call: Call<List<ListElement>>, t: Throwable) {
+                showError()
+            }
+        })
+
+    }
+    private fun showCorrect() {
+        Toast.makeText(this, "Se agrego datos", Toast.LENGTH_SHORT).show()
+    }
+    private fun showError() {
+        Toast.makeText(this, "Error no carga", Toast.LENGTH_SHORT).show()
     }
 
     fun Rrecycler(view: View){
         super.onBackPressed()
     }
+
 }
